@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.daolab.playkitdemo.InlineActivity"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dip"
+        >
+        <com.daolab.daolabui.DaolabPlayerView
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dip">
+        <com.daolab.daolabui.DaolabPlayerView
+            android:id="@+id/inlinePlayerView"
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:layout_marginTop="10dip"
+            />
+    </LinearLayout>
+
+</LinearLayout>

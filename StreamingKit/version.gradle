@@ -1,0 +1,54 @@
+
+// PlayKit Library Version
+ext.playkitVersion = 'dev'
+
+
+android.libraryVariants.all { variant ->
+    task("generate${variant.name.capitalize()}Javadoc", type: Javadoc) {
+        title = null // doclava does not support title
+        destinationDir = new File("${project.buildDir}/javadoc/", variant.baseName)
+        source = variant.javaCompile.source
+
+        ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
+        classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
+
+        description "Generates Javadoc for $variant.name."
+
+        exclude '**/R.java'
+
+        // reset options
+        options = new StandardJavadocDocletOptions()
+        options.doclet("com.google.doclava.Doclava")
+        options.docletpath(new File(project.rootDir, "tools/doclava.jar"))
+    }
+}
+
+
+
+
+// Append short commit hash to dev builds, i.e. "dev.a1b2c3d"
+if (playkitVersion == 'dev') {
+    def cmd = "git rev-parse --short HEAD"
+    def proc = cmd.execute()
+    def commit = proc.text.trim()
+    ext.playkitVersion = 'dev.' + commit
+}
+
+
+// Publish to Bintray
+try {
+    apply plugin: 'bintray-release'
+
+    publish {
+        artifactId = 'playkit'
+        description = 'PlayKit: Daolab Player SDK'
+        repoName = 'android'
+        userOrg = 'daolab'
+        groupId = 'com.daolab.daolabplayer'
+        version = playkitVersion
+        autoPublish = true
+        licences = ['AGPL-3.0']
+    }
+} catch (UnknownPluginException ignored) {
+    // Ignore - it's ok not to have this plugin - it's only used for bintray uploads.
+}

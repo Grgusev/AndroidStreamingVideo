@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+    >
+
+    <TextView
+        android:id="@+id/track_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="track_name"
+        android:textSize="20dip"
+        android:textColor="#AAAAAA"
+        android:padding="3dip"
+        />
+
+    <LinearLayout
+        android:id="@+id/select_cursor"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dip"
+        android:layout_height="3dip"
+        android:background="#2694eb"
+        android:orientation="horizontal"
+        >
+
+    </LinearLayout>
+
+</LinearLayout>
